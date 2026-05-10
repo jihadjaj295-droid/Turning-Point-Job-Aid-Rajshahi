@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলাদেশ রমজান সময়সূচি ২০২৬</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        select {
+            font-size: 18px;
+            padding: 8px;
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>বাংলাদেশ রমজান ২০২৬</h1>
+    <p>জেলা নির্বাচন করলে সেহরি ও ইফতার সময় দেখাবে:</p>
+
+    <select id="districtSelect">
+        <option value="">-- জেলা নির্বাচন করুন --</option>
+        <option value="dhaka">ঢাকা</option>
+        <option value="rajshahi">রাজশাহী</option>
+        <option value="chattogram">চট্টগ্রাম</option>
+        <option value="khulna">খুলনা</option>
+        <option value="barisal">বরিশাল</option>
+        <option value="sylhet">সিলেট</option>
+        <option value="rangpur">রংপুর</option>
+        <option value="mymensingh">ময়মনসিংহ</option>
+        <!-- চাইলে ৬৪ জেলা এখানে যোগ করো -->
+    </select>
+
+    <div id="result"></div>
+
+    <script>
+        const times = {
+          dhaka: {
+            sehri: ["05:12 AM","05:11 AM","05:11 AM","05:10 AM", "..."],
+            iftar: ["05:58 PM","05:59 PM","05:59 PM","06:00 PM", "..."]
+          },
+          rajshahi: {
+            sehri: ["05:19 AM", "05:18 AM", "05:17 AM","05:17 AM", "..."],
+            iftar: ["06:04 PM", "06:05 PM", "06:05 PM","06:06 PM", "..."]
+          },
+          chattogram: {
+            sehri: ["05:06 AM", "05:05 AM", "05:05 AM", "..."],
+            iftar: ["05:53 PM", "05:54 PM", "05:54 PM", "..."]
+          },
+          khulna: {
+            sehri: ["05:10 AM","05:09 AM","05:09 AM","..."],
+            iftar: ["06:00 PM","06:01 PM","06:01 PM","..."]
+          },
+          barisal: {
+            sehri: ["05:12 AM","05:11 AM","05:10 AM","..."],
+            iftar: ["05:58 PM","05:59 PM","05:59 PM","..."]
+          },
+          sylhet: {
+            sehri: ["05:04 AM","05:03 AM","05:03 AM","..."],
+            iftar: ["06:02 PM","06:03 PM","06:03 PM","..."]
+          },
+          rangpur: {
+            sehri: ["05:18 AM","05:17 AM","05:16 AM","..."],
+            iftar: ["06:02 PM","06:03 PM","06:03 PM","..."]
+          },
+          mymensingh: {
+            sehri: ["05:14 AM","05:13 AM","05:13 AM","..."],
+            iftar: ["06:01 PM","06:02 PM","06:02 PM","..."]
+          }
+        };
+
+        const sel = document.getElementById('districtSelect');
+        const resultDiv = document.getElementById('result');
+
+        sel.addEventListener('change', function () {
+            const d = sel.value;
+            if (!d) {
+                resultDiv.innerHTML = "";
+                return;
+            }
+
+            const info = times[d];
+            if (!info) {
+                resultDiv.innerHTML = "এই জেলার সময় যোগ করা হয়নি।";
+                return;
+            }
+
+            let html = "<h3>২৪ ঘণ্টার রমজান সময়</h3>";
+            html += "<table border='1' cellpadding='5' style='width:90%;margin:auto;'>";
+            html += "<tr><th>দিন</th><th>সেহরি শেষ</th><th>ইফতার</th></tr>";
+
+            for (let i = 0; i < info.sehri.length; i++) {
+                html += "<tr><td>" + (i+1) + "</td><td>" + info.sehri[i] + "</td><td>" + info.iftar[i] + "</td></tr>";
+            }
+            html += "</table>";
+
+            resultDiv.innerHTML = html;
+        });
+    </script>
+<footer style="
+background:#1c2a44;
+padding:15px;
+margin-top:20px;
+color:gold;
+">
+Designed & Developed by <b>Jihad</b>
+</footer>
+</body>
+</html>
